@@ -9,11 +9,18 @@ const HomeSection = styled.div`
     color: #9d8189;
 `;
 
+const Introduction = styled.div`
+    
+`;
+
 function Home() {
     return (
         <PageWrapper>
             <HomeSection>
                 <h1>Welcome</h1>
+                <Introduction>
+                    <p>Welcome to my website built with create-react-app</p>
+                </Introduction>
             </HomeSection>
         </PageWrapper>
     );

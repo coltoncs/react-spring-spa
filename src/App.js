@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Switch,
   Route,
@@ -35,12 +35,42 @@ const Navigation = styled.nav`
 const NavItem = styled.li`
   list-style: none;
   margin: 0 25px;
+  font-size: 1.3rem;
 
   a {
     color: #ffe5d9;
     text-decoration: none;
+    transition: filter 300ms;
+  }
+
+  a:hover {
+    filter: brightness(1.3);
   }
 `;
+
+function NavigationItem(props){
+  const [open, setOpen] = useState(false);
+
+  return (
+    <NavItem>
+      <Link to={props.url} onClick={() => setOpen(!open)}>{props.name}</Link>
+
+      {open && props.children}
+    </NavItem>
+  )
+}
+
+function Navi() {
+  return (
+    <Navigation className="navbar">
+      <ul className="navbar-nav">
+        <NavigationItem name="Home" url="/"/>
+        <NavigationItem name="Portfolio" url="/portfolio"/>
+        <NavigationItem name="Contact" url="/contact"/>
+      </ul>
+    </Navigation>
+  )
+}
 
 function App() {
   const location = useLocation();
@@ -49,24 +79,12 @@ function App() {
     from: { opacity: 0, transform: 'translate(100%, 0)' },
     enter: { opacity: 1, transform: 'translate(0%, 0)' },
     leave: { opacity: 0, transform: 'translate(-50%, 0)' },
-    config: config.wobbly,
+    config: config.slow,
   });
 
   return (
     <Site>
-      <Navigation>
-        <ul>
-          <NavItem>
-            <Link to="/">Home</Link>
-          </NavItem>
-          <NavItem>
-            <Link to="/portfolio">Portfolio</Link>
-          </NavItem>
-          <NavItem>
-            <Link to="/contact">Contact</Link>
-          </NavItem>
-        </ul>
-      </Navigation>
+      <Navi/>
       {transitions.map(({ item, props, key }) => (
         <animated.div key={key} style={props}>
           <Switch location={item}>

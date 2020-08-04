@@ -7,3 +7,14 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+:root {
+  --bg: #ffe5d9;
+  --bg-accent: #f4acb7;
+  --text-color: #ffe5d9;
+  --nav-size: 60px;
+  --border: 1px solid #f2b5d4;
+  --border-radius: 8px;
+  --speed: 500ms;
+  
+}
